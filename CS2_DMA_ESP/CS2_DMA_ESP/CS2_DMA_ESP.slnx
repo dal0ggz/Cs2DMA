@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="CS2_DMA_ESP/CS2_DMA_ESP.vcxproj" Id="c3a5597f-dc1c-441d-98d6-315ab51123b1" />
+</Solution>

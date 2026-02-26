@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp:*)",
+      "Bash(ls:*)",
+      "Bash(find \"C:\\\\Users\\\\jacka\\\\Desktop\\\\cs\\\\DMALibrary-Master\" -type f \\\\\\( -name \"*.cpp\" -o -name \"*.h\" \\\\\\) | xargs grep -l \"Write\\\\|write\" 2>/dev/null)"
+    ]
+  }
+}
