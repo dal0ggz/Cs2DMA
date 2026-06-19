@@ -1,193 +1,103 @@
 # Cs2DMA
 
-## Repository Status
+C++ Windows overlay project built around Direct3D 11, ImGui, generated CS2
+offset data, and a vendored DMA library.
 
-This repository is preserved as an archival C++ / Windows systems programming
-experiment. It is not recommended as a professional portfolio highlight in its
-current form because it combines overlay rendering, external memory access, and
-game-specific logic.
+The repository is mainly a personal C++/Win32 learning project. It keeps the
+source layout, UI work, configuration system, and Visual Studio setup in one
+place so the project can be reviewed without digging through old notes.
 
-Do not use this project to gain an unfair advantage in online games, bypass
-anti-cheat systems, or interfere with software you do not own or have permission
-to inspect. The useful portfolio value here is limited to the transferable
-engineering topics: Windows application structure, Direct3D rendering, ImGui UI
-composition, configuration handling, and repository cleanup.
+## Features
 
-## Overview
-
-`Cs2DMA` is a Visual Studio C++ project that explores a Windows overlay
-application using Direct3D 11 and ImGui. The source is organized around a small
-runtime entry point, an overlay/rendering layer, configuration persistence, UI
-styling, feature modules, generated SDK data, and a vendored DMA library.
-
-The repository has been cleaned up so that generated build output and local IDE
-state are ignored instead of tracked. It should be treated as a learning archive,
-not as a maintained or supported application.
-
-## Technical Highlights
-
-- Win32 application entry point with console diagnostics.
-- Direct3D 11 overlay setup and render loop.
-- ImGui-based menu styling and interaction patterns.
-- Runtime configuration saved through a local INI-style file.
-- Modular source layout for rendering, UI, configuration, and feature logic.
-- Visual Studio project configuration targeting C++20.
-- Vendored third-party code and generated SDK files, which are documented as
-  repository maintenance concerns.
-
-## What This Project Demonstrates
-
-From a safe engineering perspective, this repository demonstrates:
-
-- how a C++ desktop project can be structured around separate runtime,
-  rendering, configuration, and UI modules;
-- how Direct3D and ImGui can be wired into a Win32 application;
-- how global application settings can be centralized and persisted;
-- how generated code and vendored dependencies can quickly make a repository
-  harder to maintain;
-- why build outputs, IDE caches, and user-specific files should not be committed.
-
-It should not be used as an example of professional product scope, security
-review, dependency management, or responsible public portfolio positioning.
+- Direct3D 11 overlay window.
+- ImGui menu and custom UI styling.
+- Config load/save system for local settings.
+- Separate modules for overlay, UI, config, and feature code.
+- Generated SDK/offset headers kept under `CS2_DMA_ESP/sdk`.
+- Visual Studio project files for a Windows C++ build.
 
 ## Tech Stack
 
-| Area | Technology |
-| --- | --- |
-| Language | C++20 |
-| Platform | Windows |
-| IDE / build files | Visual Studio project files |
-| Graphics | Direct3D 11, DXGI |
-| UI | Dear ImGui |
-| Configuration | INI-style local configuration |
-| Dependencies | Vendored ImGui files, vendored DMA library, generated SDK files |
+- C++20
+- Win32 API
+- Direct3D 11 / DXGI
+- Dear ImGui
+- Visual Studio
+- DMALibrary
 
 ## Project Structure
 
 ```text
 .
 |-- CS2_DMA_ESP/
-|   |-- main.cpp                 # Application startup and high-level lifecycle
-|   |-- overlay.cpp/.h           # Win32 window, Direct3D 11, ImGui render loop
-|   |-- ui_style.cpp/.h          # ImGui styling and menu composition
-|   |-- config.cpp/.h            # Local configuration load/save helpers
-|   |-- globals.h                # Shared runtime settings and UI state
+|   |-- main.cpp
+|   |-- overlay.cpp / overlay.h
+|   |-- ui_style.cpp / ui_style.h
+|   |-- config.cpp / config.h
+|   |-- globals.h
 |   |-- features/
-|   |   |-- esp.cpp/.h           # Rendering/data feature module
-|   |   |-- aimbot.cpp/.h        # Input automation experiment
-|   |   `-- makcu.cpp/.h         # Serial-device integration experiment
+|   |   |-- esp.cpp / esp.h
+|   |   |-- aimbot.cpp / aimbot.h
+|   |   `-- makcu.cpp / makcu.h
 |   |-- sdk/
 |   |   |-- offsets.h
 |   |   |-- structs.h
-|   |   `-- generated/           # Generated SDK data
-|   |-- imgui/                   # Vendored Dear ImGui source
+|   |   `-- generated/
+|   |-- imgui/
 |   `-- CS2_DMA_ESP/
 |       |-- CS2_DMA_ESP.slnx
 |       `-- CS2_DMA_ESP/
 |           `-- CS2_DMA_ESP.vcxproj
-|-- DMALibrary-Master/           # Vendored DMA-related library
-|-- .gitignore                   # Visual Studio and build artifact rules
+|-- DMALibrary-Master/
+|-- .gitignore
 `-- README.md
 ```
 
-## Source Map
+## Main Files
 
-| File or directory | Purpose |
+| Path | Description |
 | --- | --- |
-| `CS2_DMA_ESP/main.cpp` | Starts the application, initializes configuration, and controls the main lifecycle. |
-| `CS2_DMA_ESP/overlay.cpp` | Owns the overlay window, Direct3D 11 device objects, ImGui frame setup, render loop, and cleanup. |
-| `CS2_DMA_ESP/ui_style.cpp` | Applies UI theme settings and builds the main menu surface. |
-| `CS2_DMA_ESP/config.cpp` | Reads and writes persistent settings for UI, screen, and feature state. |
-| `CS2_DMA_ESP/globals.h` | Stores shared runtime flags, colors, dimensions, and feature toggles. |
-| `CS2_DMA_ESP/features/` | Contains feature modules that should be treated as archival experiments. |
-| `CS2_DMA_ESP/sdk/generated/` | Contains generated data; it should have a documented generation source if the repo remains public. |
-| `DMALibrary-Master/` | Vendored external code; it should be replaced with a documented dependency strategy in a portfolio project. |
+| `CS2_DMA_ESP/main.cpp` | Application startup and high-level initialization. |
+| `CS2_DMA_ESP/overlay.cpp` | Win32 window creation, D3D11 setup, ImGui frame loop, and cleanup. |
+| `CS2_DMA_ESP/ui_style.cpp` | ImGui styling and menu rendering. |
+| `CS2_DMA_ESP/config.cpp` | Local config read/write helpers. |
+| `CS2_DMA_ESP/globals.h` | Shared runtime settings and UI state. |
+| `CS2_DMA_ESP/features/` | Feature modules split away from the overlay and UI code. |
+| `CS2_DMA_ESP/sdk/generated/` | Generated SDK files and offset data. |
+| `DMALibrary-Master/` | Vendored DMA library used by the Visual Studio project. |
 
-## Installation
+## Build Notes
 
-This repository does not provide supported installation instructions.
+This is a Visual Studio C++ project for Windows.
 
-The project interacts with game-specific process data and external memory access
-concepts, so operational setup instructions are intentionally not included. If
-you want to showcase the same skills professionally, create a separate benign
-Direct3D / ImGui demo that renders synthetic data only.
+General build setup:
 
-## Usage
+1. Open `CS2_DMA_ESP/CS2_DMA_ESP/CS2_DMA_ESP.slnx` in Visual Studio.
+2. Use an x64 configuration.
+3. Make sure the Windows SDK and C++ desktop workload are installed.
+4. Keep required third-party DLLs and libraries outside source control unless
+   they are intentionally vendored.
 
-No supported usage workflow is provided.
+The project file currently targets the Visual Studio `v145` platform toolset and
+uses C++20 settings.
 
-For portfolio purposes, use this repository only as a record of learning. A
-public, recruiter-friendly version should remove game-specific behavior and
-focus on harmless UI rendering, configuration management, and graphics
-programming.
+## Repository Notes
 
-## Screenshots / Demo
+- Build output, Visual Studio cache files, debug symbols, and local editor files
+  are ignored through `.gitignore`.
+- Generated files are committed because the source code references them
+  directly.
+- ImGui and DMALibrary are vendored instead of pulled through a package manager.
+- Runtime binaries and local machine files should stay out of the repository.
 
-No screenshots or demos are included. A public demo would not be appropriate for
-the current project scope.
+## Screenshots
 
-## Repository Hygiene
+No screenshots are included yet.
 
-The repository has been updated with a Visual Studio-oriented `.gitignore` so
-future commits should avoid:
+## TODO
 
-- `.vs/` IDE cache files;
-- `x64/`, `x86/`, `Debug/`, and `Release/` build output folders;
-- compiled binaries and debug symbols such as `.exe`, `.obj`, `.pdb`, `.iobj`,
-  and `.ipdb`;
-- local editor settings.
-
-Previously tracked local build artifacts were removed from the working tree as
-part of cleanup.
-
-## Quality Notes
-
-- The project has no automated tests.
-- There is no CI workflow.
-- Generated files are committed without a documented regeneration process.
-- Vendored dependencies are committed without version notes.
-- Some comments and strings mix Italian and English.
-- The current architecture depends heavily on global state.
-- The repository is larger and more specialized than ideal for a public
-  portfolio project.
-
-## Known Issues
-
-- The source is tightly coupled to a game-specific runtime context.
-- External dependencies are not documented with reproducible version metadata.
-- Error handling is not consistently strong across all Windows and rendering
-  initialization paths.
-- No static analysis, formatting, or linting configuration is included.
-- No license file is present.
-
-## Future Improvements
-
-Recommended direction if the goal is a professional portfolio:
-
-- Archive or make this repository private.
-- Create a separate harmless project that uses Direct3D 11 and ImGui to render
-  mock telemetry, charts, or UI panels.
-- Replace generated game-specific data with synthetic demo data.
-- Document dependency versions and update procedures.
-- Add a formatting configuration and a simple CI build.
-- Add screenshots for the benign demo project.
-- Add an explicit license to any repository intended for reuse.
-
-## Portfolio Recommendation
-
-Do not feature this repository as a highlighted project. If it remains public,
-keep this README clear about its archival status and avoid presenting it as a
-ready-to-use application.
-
-Better portfolio alternatives:
-
-- a Direct3D / ImGui dashboard with mock data;
-- a Windows desktop utility with settings persistence;
-- a C++ rendering sandbox with documented architecture;
-- a small systems programming project with tests and CI.
-
-## License
-
-No license file is currently present. Without a license, the code should be
-treated as all-rights-reserved by default. Add an explicit license before reuse,
-redistribution, or collaboration.
+- Document exact dependency versions.
+- Add a short note for regenerating SDK/offset files.
+- Clean up mixed Italian/English comments.
+- Add formatting rules for the C++ files.
+- Add a license if the project is meant to be reused by other people.
