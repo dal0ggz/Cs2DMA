@@ -81,23 +81,4 @@ General build setup:
 The project file currently targets the Visual Studio `v145` platform toolset and
 uses C++20 settings.
 
-## Repository Notes
 
-- Build output, Visual Studio cache files, debug symbols, and local editor files
-  are ignored through `.gitignore`.
-- Generated files are committed because the source code references them
-  directly.
-- ImGui and DMALibrary are vendored instead of pulled through a package manager.
-- Runtime binaries and local machine files should stay out of the repository.
-
-## Screenshots
-
-No screenshots are included yet.
-
-## TODO
-
-- Document exact dependency versions.
-- Add a short note for regenerating SDK/offset files.
-- Clean up mixed Italian/English comments.
-- Add formatting rules for the C++ files.
-- Add a license if the project is meant to be reused by other people.
